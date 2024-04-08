@@ -1,3 +1,9 @@
+# v1.2.9
+## 08/04/2024
+
+1. [](#improved)
+    * Improved commment styling
+
 # v1.2.8
 ## 09/10/2020
 

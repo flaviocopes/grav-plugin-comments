@@ -29,7 +29,7 @@
             {% endif %}
         {% endfor %}
         {% include "forms/fields/formname/formname.html.twig" %}
-
+    
         <div class="buttons">
         {% for button in grav.config.plugins.comments.form.buttons %}
             <button class="button" type="{{ button.type|default('submit') }}">{{ button.value|t|default('Submit') }}</button>
@@ -45,13 +45,14 @@
 
         <h3>{{'PLUGIN_COMMENTS.COMMENTS'|t}}</h3>
 
-        <table>
+        <table style="border-collapse:separate; border-spacing: 0 10px;">
             {% for comment in comments|array_reverse %}
             <tr>
-                <td>
+                <td style="padding: 10px; border: solid 1px #caced7; border-radius: 5px;">
                     {{comment.text|raw}}
                     <br />
-                    {{'PLUGIN_COMMENTS.WRITTEN_ON'|t}} {{comment.date|e}} {{'PLUGIN_COMMENTS.BY'|t}} {{comment.author}}
+                    <br />
+                    <small>{{'PLUGIN_COMMENTS.WRITTEN_ON'|t}} {{comment.date|e}} {{'PLUGIN_COMMENTS.BY'|t}} {{comment.author}}</small>
                 </td>
             </tr>
             {% endfor %}
