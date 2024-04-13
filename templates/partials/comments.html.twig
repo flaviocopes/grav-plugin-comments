@@ -49,7 +49,7 @@
             {% for comment in comments|array_reverse %}
             <tr>
                 <td>
-                    {{comment.text}}
+                    {{comment.text|raw}}
                     <br />
                     {{'PLUGIN_COMMENTS.WRITTEN_ON'|t}} {{comment.date|e}} {{'PLUGIN_COMMENTS.BY'|t}} {{comment.author}}
                 </td>
