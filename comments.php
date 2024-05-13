@@ -200,11 +200,11 @@ class CommentsPlugin extends Plugin
 
                 $path = $this->grav['uri']->path();
 
-                $lang = filter_var(urldecode($post['lang']), FILTER_SANITIZE_STRING);
-                $text = filter_var(urldecode($post['text']), FILTER_SANITIZE_STRING);
-                $name = filter_var(urldecode($post['name']), FILTER_SANITIZE_STRING);
-                $email = filter_var(urldecode($post['email']), FILTER_SANITIZE_STRING);
-                $title = filter_var(urldecode($post['title']), FILTER_SANITIZE_STRING);
+                $lang = htmlspecialchars(urldecode($post['lang']), ENT_QUOTES);
+                $text = htmlspecialchars(urldecode($post['text']), ENT_QUOTES);
+                $name = htmlspecialchars(urldecode($post['name']), ENT_QUOTES);
+                $email = filter_var(urldecode($post['email']), FILTER_SANITIZE_EMAIL);
+                $title = htmlspecialchars(urldecode($post['title']), ENT_QUOTES);
 
                 if (isset($this->grav['user'])) {
                     $user = $this->grav['user'];
@@ -361,6 +361,17 @@ class CommentsPlugin extends Plugin
         $comments = isset($data['comments']) ? $data['comments'] : null;
         //save to cache if enabled
         $cache->save($this->comments_cache_id, $comments);
+
+        $pattern = '/\r\n/i';
+        $replacement = '<br>';
+
+        // Iterate through each element of the array and apply preg_replace
+        if ($comments != null) {
+            foreach ($comments as &$value) {
+                $value = preg_replace($pattern, $replacement, $value);
+            }
+        }
+    
         return $comments;
     }
 

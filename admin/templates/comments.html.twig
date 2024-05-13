@@ -88,7 +88,7 @@
                 {% for comment in grav.twig.comments.comments %}
                     <tr>
                         <td class="author">{{comment.author}}</td>
-                        <td class="comment">{{comment.text}}</td>
+                        <td class="comment">{{comment.text|raw}}</td>
                         <td class="details"><strong>Page</strong>: {{comment.pageTitle}}<br>
                         <strong>Date</strong>: {{comment.date}}</td>
                     </tr>
