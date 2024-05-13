@@ -1,6 +1,19 @@
 {% if enable_comments_plugin %}
     {% set scope = scope ?: 'data.' %}
 
+    <style>
+        table {
+            border-collapse:separate;
+            border-spacing: 0 10px;
+        }
+
+        td {
+            padding: 10px;
+            border: solid 1px #caced7;
+            border-radius: 5px;
+        }
+    </style>
+
     <h3>{{'PLUGIN_COMMENTS.ADD_COMMENT'|t}}</h3>
 
     <form name="{{ grav.config.plugins.comments.form.name }}"
@@ -29,6 +42,8 @@
             {% endif %}
         {% endfor %}
         {% include "forms/fields/formname/formname.html.twig" %}
+    
+        <br />
 
         <div class="buttons">
         {% for button in grav.config.plugins.comments.form.buttons %}
@@ -49,9 +64,10 @@
             {% for comment in comments|array_reverse %}
             <tr>
                 <td>
-                    {{comment.text}}
+                    {{comment.text|raw}}
                     <br />
-                    {{'PLUGIN_COMMENTS.WRITTEN_ON'|t}} {{comment.date|e}} {{'PLUGIN_COMMENTS.BY'|t}} {{comment.author}}
+                    <br />
+                    <small>{{'PLUGIN_COMMENTS.WRITTEN_ON'|t}} {{comment.date|e}} {{'PLUGIN_COMMENTS.BY'|t}} {{comment.author}}</small>
                 </td>
             </tr>
             {% endfor %}

@@ -1,3 +1,13 @@
+# v1.2.9
+## 13/05/2024
+
+1. [](#improved)
+    * Changed icon to ["text bubble"](https://fontawesome.com/icons/comment?f=classic&s=solid) in grav admin menu
+    * The "Load more" button under the "Comments in the last 7 days" table was fixed
+    * The styling of comments is improved
+1. [](#bugfix)
+    * Fix for escaping problem [#107](https://github.com/getgrav/grav-plugin-comments/issues/107)
+
 # v1.2.8
 ## 09/10/2020
 
